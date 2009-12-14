@@ -23,7 +23,7 @@ our @EXPORT = qw(
 
 #=fe
 
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 
 #=fs Config
 
@@ -101,7 +101,7 @@ OO-interface of convenience methods to allow simple use of the various sdv and e
 it allows you to use the various routines directly using an object interface for the various C structure types. These
 exist within specific lower-level namespaces for convenience - see below.
 
-=head2 Math::GSL::Linalg::Linalg::SDL namespace
+=head2 Math::GSL::Linalg::SVD
 
 =head3 new
 
@@ -122,7 +122,7 @@ Used for loading data into object. Data is fed as a reference to a LoL within an
                                     [qw/  4.156708817272E-02  5.298288357316E-02 /], 
                                ] } );
 
-=head3 decomposition
+=head3 decompose
 
 Performs one of several different singular value decomposition algorithms on the loaded matrix (or computes eigenvalues
 and eigenvectors) depending on argument passed with with 'algorithm' argument. To use the Golub-Reinsch algorithm 
@@ -159,7 +159,7 @@ http://www.gnu.org/software/gsl/manual/html_node/Real-Symmetric-Matrices.html.
         print qq{\nEigenvector: }; 
         for my $vec_component (@{$e_vec_ref->[$i]}) { print qq{$vec_component, }; }; print qq{\n}; }
 
-=head2 Math::GSL::Linalg::SDL::Matrix
+=head2 Math::GSL::Linalg::SVD::Matrix
 
 This namespace functions as an interface to the C<gsl_matrix> C-structure typedef. 
 
@@ -167,7 +167,7 @@ This namespace functions as an interface to the C<gsl_matrix> C-structure typede
 
     Name:           new
     Implements:     gsl_matrix_alloc
-    Usage:          $gsl_matrix_pointer_as_perl_object = Math::GSL::Linalg::SDL::Matrix->new;
+    Usage:          $gsl_matrix_pointer_as_perl_object = Math::GSL::Linalg::SVD::Matrix->new;
     Returns:        pointer to a gsl_matrix type as Perl object
 
 =head3 set_matrix
@@ -212,7 +212,7 @@ This namespace functions as an interface to the C<gsl_matrix> C-structure typede
     Usage:          $gsl_matrix_pointer_as_perl_object->Eigen_decomp (...);
     Returns:  
 
-=head2 Math::GSL::Linalg::SDL::Vector
+=head2 Math::GSL::Linalg::SVD::Vector
 
 This namespace functions as an interface to the C<gsl_vector> C-structure typedef. 
 
@@ -220,7 +220,7 @@ This namespace functions as an interface to the C<gsl_vector> C-structure typede
 
     Name:           new
     Implements:     gsl_vector_alloc
-    Usage:          $gsl_vector_pointer_as_perl_object = Math::GSL::Linalg::SDL::Vector->new;
+    Usage:          $gsl_vector_pointer_as_perl_object = Math::GSL::Linalg::SVD::Vector->new;
     Returns:        pointer to gsl_vector as perl object
 
 
@@ -238,7 +238,7 @@ This namespace functions as an interface to the C<gsl_vector> C-structure typede
     Usage:          $gsl_vector_pointer_as_perl_object->set_vector($row, $col)
     Returns:        scalar value
 
-=head2 Math::GSL::Linalg::SDL::Eigen
+=head2 Math::GSL::Linalg::SVD::Eigen
 
 This namespace functions as an interface to the C<gsl_eigen_symmv_workspace> C-structure typedef used as workspace for
 the eigen decomposition routines of the gsl library. 
@@ -247,7 +247,7 @@ the eigen decomposition routines of the gsl library.
 
     Name:           new
     Implements:     gsl_eigen_symmv_alloc
-    Usage:          $gsl_vector_pointer_as_perl_object = Math::GSL::Linalg::SDL::vector->new;
+    Usage:          $gsl_vector_pointer_as_perl_object = Math::GSL::Linalg::SVD::vector->new;
     Returns:        pointer to gsl_eigen_symmv type as perl object
 
 =cut
